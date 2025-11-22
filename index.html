@@ -34,6 +34,118 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <!-- AAAI-style accent theme -->
+  <style>
+    :root {
+      --aaai-red: #B31B1B;
+      --aaai-red-dark: #8E1515;
+      --aaai-bg-soft: #faf7f7;
+      --aaai-text-main: #222222;
+      --aaai-gray-border: #dddddd;
+    }
+
+    html, body {
+      background-color: var(--aaai-bg-soft);
+      color: var(--aaai-text-main);
+    }
+
+    .navbar {
+      border-bottom: 2px solid var(--aaai-red);
+      background-color: #ffffff;
+    }
+
+    .navbar-item,
+    .navbar-link {
+      font-weight: 500;
+    }
+
+    .hero.aaai-hero {
+      background: radial-gradient(circle at top left, #ffffff 0, #fdf4f4 45%, #faf7f7 100%);
+    }
+
+    h1.title.publication-title {
+      color: var(--aaai-red);
+      letter-spacing: 0.02em;
+    }
+
+    h2.subtitle.aaai-subtitle {
+      color: var(--aaai-red-dark) !important;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h2.title.is-3 {
+      color: var(--aaai-red-dark);
+    }
+
+    a {
+      color: var(--aaai-red-dark);
+    }
+    a:hover {
+      color: var(--aaai-red);
+    }
+
+    .button.is-dark {
+      background-color: var(--aaai-red);
+      border-color: var(--aaai-red);
+    }
+    .button.is-dark:hover,
+    .button.is-dark:focus {
+      background-color: var(--aaai-red-dark);
+      border-color: var(--aaai-red-dark);
+    }
+
+    /* Benchmarks table */
+    #benchmarks .aaai-table-wrapper {
+      margin-top: 1.5rem;
+    }
+
+    #benchmarks table.aaai-table {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    #benchmarks table.aaai-table thead {
+      background-color: var(--aaai-red);
+      color: #ffffff;
+    }
+
+    #benchmarks table.aaai-table th,
+    #benchmarks table.aaai-table td {
+      padding: 0.55rem 0.8rem;
+      border: 1px solid var(--aaai-gray-border);
+      font-size: 0.9rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    #benchmarks table.aaai-table th:first-child,
+    #benchmarks table.aaai-table td:first-child {
+      text-align: left;
+      white-space: normal;
+    }
+
+    #benchmarks table.aaai-table tbody tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    #benchmarks table.aaai-table tbody tr:hover {
+      background-color: #f4f0f0;
+    }
+
+    #benchmarks .metric-note {
+      font-size: 0.85rem;
+      color: #666666;
+      margin-top: 0.4rem;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
@@ -77,7 +189,7 @@
 
 
 <!-- 顶部标题区 -->
-<section class="hero">
+<section class="hero aaai-hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
@@ -86,7 +198,7 @@
             FreeAskWorld: An Interactive and Closed-Loop Simulator for Human-Centric Embodied AI
           </h1>
 
-          <h2 class="subtitle is-5" style="margin-top: 0.5rem; color: #777;">
+          <h2 class="subtitle is-5 aaai-subtitle" style="margin-top: 0.5rem;">
             AAAI 2026 · Oral
           </h2>
 
@@ -236,7 +348,7 @@
       <div class="column is-half">
         <figure class="image">
           <img src="./static/images/Style.jpg"
-               alt="Visual style comparison and environment examples from FreeAskWorld">  
+               alt="Visual style comparison and environment examples from FreeAskWorld">
         </figure>
         <p class="has-text-centered is-size-6" style="margin-top: 0.75rem;">
           <strong>Figure 2.</strong> Example urban scenes in FreeAskWorld, showing both
@@ -306,27 +418,110 @@
       </div>
 
     </div>
-    <!--/ 上半部分 -->
 
-    <!-- Evaluation / Benchmarks -->
+  </div>
+</section>
+
+
+<!-- Benchmarks & Results with AAAI-styled table -->
+<section class="section" id="benchmarks">
+  <div class="container is-max-desktop">
     <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Benchmarks &amp; Results</h2>
-        <div class="content has-text-justified">
-          <p>
-            We evaluate several navigation baselines (including BEVBert-style planners and ETPNav-like
-            VLN agents) in FreeAskWorld, under both open-loop and closed-loop settings.
-            Metrics include TL, NE, SR, SPL, OSR and navigation dialogue indices.
-          </p>
-          <p>
-            Fine-tuning on FreeAskWorld substantially improves route success and robustness in the presence
-            of dynamic obstacles and ambiguous instructions, but there remains a large gap compared to
-            human performance, especially in long-horizon and socially constrained scenarios.
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-centered">Benchmarks &amp; Results</h2>
+        <p class="content has-text-justified" style="max-width: 880px; margin: 0 auto 1.2rem;">
+          We benchmark multiple agents and human participants on the closed-loop Direction Inquiry
+          task in FreeAskWorld. The table below summarizes trajectory length (TL), success rate (SR),
+          success weighted by path length (SPL), navigation error (NE), oracle success rate (OSR),
+          oracle navigation error (ONE), and our navigation dialogue index (NDI).
+        </p>
+
+        <div class="aaai-table-wrapper">
+          <div style="overflow-x: auto;">
+            <table class="aaai-table">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>TL</th>
+                  <th>SR ↑</th>
+                  <th>SPL ↑</th>
+                  <th>NE ↓</th>
+                  <th>OSR ↑</th>
+                  <th>ONE ↓</th>
+                  <th>NDI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Human (no asking)</td>
+                  <td>47.5</td>
+                  <td>40.2</td>
+                  <td>38.2</td>
+                  <td>18.3</td>
+                  <td>41.3</td>
+                  <td>11.3</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td><strong>Human (asking)</strong></td>
+                  <td>59.9</td>
+                  <td><strong>82.6</strong></td>
+                  <td><strong>71.2</strong></td>
+                  <td><strong>3.49</strong></td>
+                  <td><strong>82.6</strong></td>
+                  <td><strong>1.63</strong></td>
+                  <td><strong>0.78</strong></td>
+                </tr>
+                <tr>
+                  <td>ETPNav</td>
+                  <td>31.2</td>
+                  <td>0.0</td>
+                  <td>0.0</td>
+                  <td>32.9</td>
+                  <td>0.0</td>
+                  <td>28.7</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>BEVBert</td>
+                  <td>14.6</td>
+                  <td>0.0</td>
+                  <td>0.0</td>
+                  <td>31.0</td>
+                  <td>0.0</td>
+                  <td>29.0</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>ETPNav-FT</td>
+                  <td>33.6</td>
+                  <td>0.0</td>
+                  <td>0.0</td>
+                  <td>31.6</td>
+                  <td>1.1</td>
+                  <td>27.1</td>
+                  <td>0.0</td>
+                </tr>
+                <tr>
+                  <td>BEVBert-FT</td>
+                  <td>18.7</td>
+                  <td>0.0</td>
+                  <td>0.0</td>
+                  <td>30.0</td>
+                  <td>0.0</td>
+                  <td>28.5</td>
+                  <td>0.0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="metric-note">
+            ↑ higher is better, ↓ lower is better. Human performance with asking demonstrates
+            the potential of interactive, dialogue-driven navigation in FreeAskWorld.
           </p>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -334,7 +529,7 @@
 <!-- BibTeX -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
+    <h2 class="title is-3">BibTeX</h2>
     <pre><code>@article{peng2026freeaskworld,
   author    = {Peng, Yuhang and Pan, Yizhou and He, Xinning and Yang, Jihaoyu and Yin, Xinyu and Wang, Han and Zheng, Xiaoji and Gao, Chao and Gong, Jiangtao},
   title     = {FreeAskWorld: An Interactive and Closed-Loop Simulator for Human-Centric Embodied AI},
