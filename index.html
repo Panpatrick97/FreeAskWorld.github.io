@@ -161,11 +161,6 @@
 </section>
 
 
-
-
-
-
-
 <!-- Abstract 区块 -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -200,7 +195,70 @@
       </div>
     </div>
     <!--/ Abstract. -->
+  </div>
+</section>
 
+
+<!-- System Overview & Figures -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">System Overview &amp; Key Figures</h2>
+        <div class="content has-text-justified">
+          <p>
+            The following figures provide a high-level overview of the FreeAskWorld framework,
+            including the data generation pipeline, the visual style of our urban scenes, and
+            the people simulation framework that supports rich human–agent interactions.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Figure 1: System Overview -->
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <figure class="image">
+          <img src="./static/images/System%20Overview%20from%20FreeAskWorld.jpeg"
+               alt="System overview of the FreeAskWorld data generation pipeline">
+        </figure>
+        <p class="has-text-centered is-size-6" style="margin-top: 0.75rem;">
+          <strong>Figure 1.</strong> FreeAskWorld data generation pipeline. The scene randomizer
+          configures world information (weather, traffic and human profiles), then a rule-based
+          player, world information module and an LLM collaboratively generate raw and human-like
+          instructions, while the simulation manager runs the loop to collect trajectories,
+          instructions and multimodal annotations.
+        </p>
+      </div>
+    </div>
+
+    <!-- Figure 2 & 3: Style + People Simulation -->
+    <div class="columns is-centered" style="margin-top: 2rem;">
+      <div class="column is-half">
+        <figure class="image">
+          <img src="./static/images/Style%20from%20FreeAskWorld.jpeg"
+               alt="Visual style comparison and environment examples from FreeAskWorld">
+        </figure>
+        <p class="has-text-centered is-size-6" style="margin-top: 0.75rem;">
+          <strong>Figure 2.</strong> Example urban scenes in FreeAskWorld, showing both
+          simulated environments and their photorealistic counterparts. The simulator
+          supports controllable lighting, weather and traffic for diverse navigation scenarios.
+        </p>
+      </div>
+
+      <div class="column is-half">
+        <figure class="image">
+          <img src="./static/images/People%20Simulation%20Framework.jpg"
+               alt="People simulation framework in FreeAskWorld">
+        </figure>
+        <p class="has-text-centered is-size-6" style="margin-top: 0.75rem;">
+          <strong>Figure 3.</strong> People simulation framework. A hierarchical controller
+          coordinates world information, schedule &amp; profile generation, high-level activity
+          planning, mid-level subtask selection and low-level motion controllers to produce
+          realistic human behaviors and interactions with embodied agents.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
