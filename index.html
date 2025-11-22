@@ -35,44 +35,99 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
 
-  <!-- AAAI 风格表格配色 -->
+  <!-- AAAI 风格的配色与表格样式 -->
   <style>
-    .aaai-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1.5rem;
-      font-size: 1.05rem;
+    body {
+      background-color: #fafafa;
+      color: #222;
+      font-family: "Google Sans", "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    .aaai-table th {
-      background: #1a2a6c;         /* 深蓝 */
+    .hero {
+      background: linear-gradient(135deg, #102a6b 0%, #1b3d9b 60%, #e9f0ff 100%);
+      color: #fff;
+    }
+
+    .hero .title {
       color: #ffffff;
-      padding: 12px 10px;
-      text-align: center;
+    }
+
+    .hero .subtitle {
+      color: #d9e2ff;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
       font-weight: 600;
     }
 
-    .aaai-table td {
-      padding: 12px 10px;
+    .navbar {
+      border-bottom: 1px solid #e0e4f0;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    .navbar-item,
+    .navbar-link {
+      font-weight: 500;
+    }
+
+    .publication-links .button.is-dark {
+      background-color: #102a6b;
+      border-color: #102a6b;
+    }
+
+    .publication-links .button.is-dark:hover {
+      background-color: #1b3d9b;
+      border-color: #1b3d9b;
+    }
+
+    /* Benchmarks 表格样式 */
+    .results-table {
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .results-table thead {
+      background-color: #102a6b;   /* 深蓝色表头 */
+      color: #ffffff;
+    }
+
+    .results-table th,
+    .results-table td {
+      border: 1px solid #e3e6ee;
+      padding: 0.6rem 0.9rem;
       text-align: center;
-      border-bottom: 1px solid #d9d9d9;
+      vertical-align: middle;
+      white-space: nowrap;
     }
 
-    .aaai-table tr:nth-child(odd) td {
-      background: #f7f9fc;         /* 淡灰白 */
-    }
-
-    .aaai-table tr:nth-child(even) td {
-      background: #ffffff;         /* 白色 */
-    }
-
-    .aaai-table tr:hover td {
-      background: #e4ecf7;         /* Hover 淡蓝灰 */
-    }
-
-    .highlight {
-      color: #0057e7;              /* 亮蓝色高亮 */
+    .results-table th {
       font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .results-table tbody tr:nth-child(even) {
+      background-color: #f7f9fc;   /* 斑马线效果 */
+    }
+
+    .results-table tbody tr.highlight {
+      background-color: #eef3ff;   /* 高亮 Human (asking) 行 */
+    }
+
+    .results-table td.method-cell {
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .results-table .metric-best {
+      color: #0046ff;              /* 亮蓝色强调 */
+      font-weight: 600;
+    }
+
+    .results-caption {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
@@ -127,7 +182,7 @@
             FreeAskWorld: An Interactive and Closed-Loop Simulator for Human-Centric Embodied AI
           </h1>
 
-          <h2 class="subtitle is-5" style="margin-top: 0.5rem; color: #777;">
+          <h2 class="subtitle is-5" style="margin-top: 0.5rem;">
             AAAI 2026 · Oral
           </h2>
 
@@ -357,84 +412,99 @@
           <p>
             We evaluate several navigation baselines (including BEVBert-style planners and ETPNav-like
             VLN agents) in FreeAskWorld, under both open-loop and closed-loop settings.
-            Metrics include trajectory length (TL), success rate (SR), success weighted by path length (SPL),
-            navigation error (NE), oracle success rate (OSR), oracle navigation error (ONE), and our
-            navigation dialogue index (NDI).
-          </p>
-          <p>
-            The table below summarizes performance on the main Direction Inquiry benchmark.
-            Human performance with asking illustrates the potential of interactive navigation,
-            while current VLN agents still exhibit a large gap, especially on SR, SPL and NDI.
+            Metrics include TL, NE, SR, SPL, OSR, ONE and the navigation dialogue index NDI.
           </p>
         </div>
 
-        <!-- AAAI 风格结果表 -->
-        <table class="aaai-table">
-          <tr>
-            <th>Method</th>
-            <th>TL</th>
-            <th>SR ↑</th>
-            <th>SPL ↑</th>
-            <th>NE ↓</th>
-            <th>OSR ↑</th>
-            <th>ONE ↓</th>
-            <th>NDI</th>
-          </tr>
-
-          <tr>
-            <td>Human (no asking)</td>
-            <td>47.5</td>
-            <td>40.2</td>
-            <td>38.2</td>
-            <td>18.3</td>
-            <td>41.3</td>
-            <td>11.3</td>
-            <td>0.0</td>
-          </tr>
-
-          <tr>
-            <td>Human (asking)</td>
-            <td>59.9</td>
-            <td class="highlight">82.6</td>
-            <td class="highlight">71.2</td>
-            <td class="highlight">3.49</td>
-            <td class="highlight">82.6</td>
-            <td>1.63</td>
-            <td class="highlight">0.78</td>
-          </tr>
-
-          <tr>
-            <td>ETPNav</td>
-            <td>31.2</td>
-            <td>0.0</td>
-            <td>0.0</td>
-            <td>32.9</td>
-            <td>0.0</td>
-            <td>28.7</td>
-            <td>0.0</td>
-          </tr>
-
-          <!-- 如果后面还有模型，在这里继续加行 -->
-        </table>
+        <div class="table-container">
+          <table class="table results-table is-fullwidth">
+            <thead>
+            <tr>
+              <th>Method</th>
+              <th>TL</th>
+              <th>SR &uarr;</th>
+              <th>SPL &uarr;</th>
+              <th>NE &darr;</th>
+              <th>OSR &uarr;</th>
+              <th>ONE &darr;</th>
+              <th>NDI</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="method-cell">Human (no asking)</td>
+              <td>47.5</td>
+              <td>40.2</td>
+              <td>38.2</td>
+              <td>18.3</td>
+              <td>41.3</td>
+              <td>11.3</td>
+              <td>0.0</td>
+            </tr>
+            <tr class="highlight">
+              <td class="method-cell">Human (asking)</td>
+              <td>59.9</td>
+              <td><span class="metric-best">82.6</span></td>
+              <td><span class="metric-best">71.2</span></td>
+              <td><span class="metric-best">3.49</span></td>
+              <td><span class="metric-best">82.6</span></td>
+              <td><span class="metric-best">1.63</span></td>
+              <td><span class="metric-best">0.78</span></td>
+            </tr>
+            <tr>
+              <td class="method-cell">ETPNav</td>
+              <td>31.2</td>
+              <td>0.0</td>
+              <td>0.0</td>
+              <td>32.9</td>
+              <td>0.0</td>
+              <td>28.7</td>
+              <td>0.0</td>
+            </tr>
+            <tr>
+              <td class="method-cell">BEVBert</td>
+              <td>14.6</td>
+              <td>0.0</td>
+              <td>0.0</td>
+              <td>31.0</td>
+              <td>0.0</td>
+              <td>29.0</td>
+              <td>0.0</td>
+            </tr>
+            <tr>
+              <td class="method-cell">ETPNav-FT</td>
+              <td>33.6</td>
+              <td>0.0</td>
+              <td>0.0</td>
+              <td>31.6</td>
+              <td>1.1</td>
+              <td>27.1</td>
+              <td>0.0</td>
+            </tr>
+            <tr>
+              <td class="method-cell">BEVBert-FT</td>
+              <td>18.7</td>
+              <td>0.0</td>
+              <td>0.0</td>
+              <td>30.0</td>
+              <td>0.0</td>
+              <td>28.5</td>
+              <td>0.0</td>
+            </tr>
+            </tbody>
+          </table>
+          <p class="results-caption">
+            Table 1: Closed-loop navigation performance of human participants and VLN baselines
+            in the FreeAskWorld simulator. Human agents that are allowed to ask for help achieve
+            substantially higher success with fewer navigation errors.
+          </p>
+        </div>
       </div>
     </div>
 
   </div>
 </section>
 
-
-<!-- BibTeX -->
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{peng2026freeaskworld,
-  author    = {Peng, Yuhang and Pan, Yizhou and He, Xinning and Yang, Jihaoyu and Yin, Xinyu and Wang, Han and Zheng, Xiaoji and Gao, Chao and Gong, Jiangtao},
-  title     = {FreeAskWorld: An Interactive and Closed-Loop Simulator for Human-Centric Embodied AI},
-  journal   = {AAAI},
-  year      = {2026},
-}</code></pre>
-  </div>
-</section>
 
 
 <footer class="footer">
